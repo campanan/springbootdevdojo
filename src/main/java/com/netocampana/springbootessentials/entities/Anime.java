@@ -1,22 +1,13 @@
 package com.netocampana.springbootessentials.entities;
 
 
-public class Anime {
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
+public class Anime {
+    private int id;
     private String name;
 
-    public Anime(String name) {
-        this.name = name;
-    }
-
-    public Anime(){
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
