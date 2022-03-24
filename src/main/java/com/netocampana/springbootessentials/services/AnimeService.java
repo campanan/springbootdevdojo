@@ -6,6 +6,7 @@ import com.netocampana.springbootessentials.util.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -26,6 +27,7 @@ public class AnimeService {
         return animeRepository.findByName(name);
     }
 
+    @Transactional
     public Anime save(Anime anime) {
         return animeRepository.save(anime);
     }
