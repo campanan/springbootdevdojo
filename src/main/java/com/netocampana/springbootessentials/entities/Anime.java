@@ -3,6 +3,7 @@ package com.netocampana.springbootessentials.entities;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.URL;
@@ -17,7 +18,7 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-
+@Builder
 public class Anime {
 
     @Id
