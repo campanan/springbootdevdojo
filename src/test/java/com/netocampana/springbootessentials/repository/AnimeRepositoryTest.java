@@ -1,6 +1,7 @@
 package com.netocampana.springbootessentials.repository;
 
 import com.netocampana.springbootessentials.entities.Anime;
+import com.netocampana.springbootessentials.util.AnimeCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -18,13 +19,15 @@ import java.util.Optional;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class AnimeRepositoryTest {
 
+
+
     @Autowired
     private AnimeRepository animeRepository;
 
     @Test
     @DisplayName("Save creates anime when successful")
     public void save_PersistAnime_WhenSuccessful(){
-        Anime anime = createAnime();
+        Anime anime = AnimeCreator.createAnimeToBeSaved();
         Anime savedAnime = this.animeRepository.save(anime);
         Assertions.assertThat(savedAnime.getId()).isNotNull();
         Assertions.assertThat(savedAnime.getName()).isEqualTo(anime.getName());
@@ -33,7 +36,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Save updates anime when successful")
     public void update_PersistAnime_WhenSuccessful(){
-        Anime anime = createAnime();
+        Anime anime = AnimeCreator.createAnimeToBeSaved();
         Anime savedAnime = this.animeRepository.save(anime);
         savedAnime.setName("That time I got reincarnated as a Slime");
         Anime updatedAnime = this.animeRepository.save(savedAnime);
@@ -44,7 +47,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Save updates anime when successful")
     public void delete_RemoveAnime_WhenSuccessful(){
-        Anime anime = createAnime();
+        Anime anime = AnimeCreator.createAnimeToBeSaved();
         Anime savedAnime = this.animeRepository.save(anime);
         this.animeRepository.delete(anime);
         Optional<Anime> animeOptional = this.animeRepository.findById(savedAnime.getId());
@@ -54,7 +57,7 @@ class AnimeRepositoryTest {
     @Test
     @DisplayName("Find by name returns anime when successful")
     public void findByNameAnime_ReturnAnime_WhenSuccessful(){
-        Anime anime = createAnime();
+        Anime anime = AnimeCreator.createAnimeToBeSaved();
         Anime savedAnime = this.animeRepository.save(anime);
         String name = savedAnime.getName();
         this.animeRepository.findByName(name);
@@ -86,9 +89,5 @@ class AnimeRepositoryTest {
 
 
 
-    private Anime createAnime(){
-        return Anime.builder()
-                .name("Tensei Shitara Slime Datta ken")
-                .build();
-    }
+
 }

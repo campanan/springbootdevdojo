@@ -30,7 +30,7 @@ public class AnimeController {
 
     @GetMapping
     public ResponseEntity<Page<Anime>> listAll(Pageable pageable){
-        log.info("Date formatted {}", utils.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+//        log.info("Date formatted {}", utils.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAll(pageable));
     }
 
