@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -45,17 +46,21 @@ public class AnimeController {
         return ResponseEntity.ok(animeService.findByName(name));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Anime> save(@RequestBody @Valid Anime anime){
         return ResponseEntity.ok(animeService.save(anime));
     }
 
+
     @DeleteMapping(path = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable int id){
         animeService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody Anime anime){
         animeService.update(anime);
