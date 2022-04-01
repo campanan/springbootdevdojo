@@ -3,12 +3,15 @@ package com.netocampana.springbootessentials.client;
 import com.netocampana.springbootessentials.entities.Anime;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 public class SpringClient {
 
     public static void main(String[] args) {
+
+
         ResponseEntity<Anime> animeResponseEntity = new RestTemplate()
                 .getForEntity("http://localhost:8080/animes/{id}", Anime.class, 2);
 
